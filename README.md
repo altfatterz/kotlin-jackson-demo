@@ -1,5 +1,33 @@
 # Playground with @JsonProperty, @JsonAlias and @JsonCreator with Kotlin
  
+```kotlin
+@RestController
+class DemoController {
+
+    @PostMapping("/json-property")
+    fun jsonProperty(@RequestBody greeting: WithJsonProperty) = greeting.value
+
+    @PostMapping("/json-alias")
+    fun jsonAlias(@RequestBody greeting: WithJsonAlias) = greeting.value
+
+    @PostMapping("/json-creator")
+    fun jsonAlias(@RequestBody greeting: WithJsonCreator) = greeting.value
+
+}
+
+data class WithJsonProperty(@JsonProperty("value2") val value: String);
+
+data class WithJsonAlias(@JsonAlias("value2") val value: String);
+
+data class WithJsonCreator(val value: String) {
+    companion object {
+        @JvmStatic
+        @JsonCreator
+        fun create(@JsonProperty("value2") value2: String) = WithJsonCreator(value2.toLowerCase())
+    }
+}
+``` 
+ 
 ## @JsonProperty
 
 ```bash
