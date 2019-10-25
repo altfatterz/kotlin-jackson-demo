@@ -4,14 +4,23 @@
 @RestController
 class DemoController {
 
-    @PostMapping("/json-property")
-    fun jsonProperty(@RequestBody greeting: WithJsonProperty) = greeting.value
+    @PostMapping("/post-json-property")
+    fun postJsonProperty(@RequestBody greeting: WithJsonProperty) = greeting.value
 
-    @PostMapping("/json-alias")
-    fun jsonAlias(@RequestBody greeting: WithJsonAlias) = greeting.value
+    @PostMapping("/post-json-alias")
+    fun postJsonAlias(@RequestBody greeting: WithJsonAlias) = greeting.value
 
-    @PostMapping("/json-creator")
-    fun jsonAlias(@RequestBody greeting: WithJsonCreator) = greeting.value
+    @PostMapping("/post-json-creator")
+    fun postJsonAlias(@RequestBody greeting: WithJsonCreator) = greeting.value
+
+    @GetMapping("/get-json-property")
+    fun getJsonProperty() = WithJsonProperty("hello")
+
+    @GetMapping("/get-json-alias")
+    fun getJsonAlias() = WithJsonAlias("hello")
+
+    @GetMapping("/get-json-creator")
+    fun getJsonCreator() = WithJsonCreator("hello")
 
 }
 
