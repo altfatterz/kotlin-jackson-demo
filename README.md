@@ -31,7 +31,7 @@ data class WithJsonCreator(val value: String) {
 ## @JsonProperty
 
 ```bash
-zoal@zoltans-macbook-pro:~|⇒  echo '{"value2":"TEST"}'  | http post :8080/json-property
+zoal@zoltans-macbook-pro:~|⇒  echo '{"value2":"TEST"}'  | http post :8080/post-json-property
 HTTP/1.1 200
 Content-Length: 4
 Content-Type: application/json;charset=UTF-8
@@ -40,10 +40,22 @@ Date: Fri, 25 Oct 2019 09:34:48 GMT
 TEST
 ```
 
+```bash
+⇒  http :8080/get-json-property
+HTTP/1.1 200
+Content-Type: application/json
+Date: Fri, 25 Oct 2019 11:49:07 GMT
+Transfer-Encoding: chunked
+
+{
+    "value2": "hello"
+}
+```
+
 ## @JsonAlias
 
 ```bash
-zoal@zoltans-macbook-pro:~|⇒  echo '{"value2":"TEST"}'  | http post :8080/json-alias
+zoal@zoltans-macbook-pro:~|⇒  echo '{"value2":"TEST"}'  | http post :8080/post-json-alias
 HTTP/1.1 400
 Connection: close
 Content-Type: application/json
@@ -59,14 +71,39 @@ Transfer-Encoding: chunked
 }
 ```
 
+```bash
+⇒  http :8080/get-json-alias
+HTTP/1.1 200
+Content-Type: application/json
+Date: Fri, 25 Oct 2019 11:49:31 GMT
+Transfer-Encoding: chunked
+
+{
+    "value": "hello"
+}
+```
+
+
 ## @JsonCreator
 
 ```bash
-zoal@zoltans-macbook-pro:~|⇒  echo '{"value2":"TEST"}'  | http post :8080/json-creator
+zoal@zoltans-macbook-pro:~|⇒  echo '{"value2":"TEST"}'  | http post :8080/post-json-creator
 HTTP/1.1 200
 Content-Length: 4
 Content-Type: application/json;charset=UTF-8
 Date: Fri, 25 Oct 2019 09:35:18 GMT
 
 test
+```
+
+```bash
+⇒  http :8080/get-json-creator
+HTTP/1.1 200
+Content-Type: application/json
+Date: Fri, 25 Oct 2019 11:49:55 GMT
+Transfer-Encoding: chunked
+
+{
+    "value": "hello"
+}
 ```
