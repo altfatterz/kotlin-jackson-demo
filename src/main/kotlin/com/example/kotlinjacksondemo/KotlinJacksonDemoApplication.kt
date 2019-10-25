@@ -42,7 +42,7 @@ class DemoController {
 
 data class WithJsonProperty(@JsonProperty("value2") val value: String);
 
-data class WithJsonAlias(@JsonAlias("value2") val value: String);
+data class WithJsonAlias(@JsonAlias("value2") @JsonProperty("value") val value: String);
 
 data class WithJsonCreator(val value: String) {
     companion object {
